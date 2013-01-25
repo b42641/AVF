@@ -2,11 +2,11 @@
 
 
 
-
+//////////
 $(function() {
 	$.getJSON("http://search.twitter.com/search.json?q=dmusicstud&rpp=3&include_entities=true&results_type=popular&callback=?",
 		function(data) {
-		console.log(data);
+		//console.log(data);
 		$("#data-msg").html("<p>Successfully awesome</p>");
 		for (i=0, j=data.results.length; i<j; i++) {
 			$("#data-output")
@@ -18,27 +18,7 @@ $(function() {
 });
 
 
-/*$.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
-  {
-    tags: "guitar",
-    tagmode: "any",
-    format: "json"
-  },
-  function(data) {
-		console.log(data);
-		alert(data.completed_in);
-		$("#data-msg").html("<p>Data successfully obtained!</p>");
-		for (i=0, j=data.results; i<j; i++) {
-			$("#data-output2")
-				.append("<li>" +
-					"<p>" + "<img src='" + item.media.m + "' /><br />" + data.results[i].text + "</p>" + "</li>");
-
-	}
-
-    });*/
-
-
-
+/////////
 
 $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
   {
@@ -52,23 +32,118 @@ $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?
       $("<img/>").attr("src", item.media.m).appendTo("#data-output2");
       if ( i == 5 ) return false;
     
-console.log(data);
+//console.log(data);
     });
   });
 
 
 
+var x = document.getElementById("location");
+var getLocation = function () {
+  if (navigator.geolocation)
+    {
+    navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  else {
+    x.innerHTML="Geolocation is not supported by this browser.";}
+  }
+function showPosition (position) {
+  x.innerHTML='Geo/Location is: ' + 'Latitude: '          + position.coords.latitude          + '\n' +
+          'Longitude: '         + position.coords.longitude         + '\n' +
+          'Accuracy: '          + position.coords.accuracy          + '\n'
+  };
+///////////
 
 
+/*document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady() {
+   
+}
+
+function alertDismissed() {
+    
+}
+
+function showAlert() {
+            alert(
+                   'You are the winner!',  
+                    alertDismissed,         
+                    'Game Over',            
+                    'Done'                  
+                  );
+                };*/
+
+//navigator.notification.alert(message, alertCallback, [title], [buttonName])
+/////////////
+
+var picSrc;   
+var destType; 
+
+document.addEventListener("deviceready",onDeviceReady,false);
+    
+var onDeviceReady = function() {
+        picSrc=navigator.camera.PictureSourceType;
+        destType=navigator.camera.DestinationType;
+    }
+
+    
+var onPhotoDataSuccess = function(imageData) {
+        var smallImg = document.getElementById('smallImage');
+        smallImg.style.display = 'block';
+        smallImg.src = "data:image/jpeg;base64," + imageData;
+    }
+
+var onPhotoURISuccess = function(imageURI) {
+        var largeImage = document.getElementById('largeImage');
+        largeImage.style.display = 'block';
+        largeImage.src = imageURI;
+    }
+
+var capturePhoto = function() {
+        navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
+        destinationType: destinationType.DATA_URL });
+    }
+
+var capturePhotoEdit = function() {
+        navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 20, allowEdit: true,
+        destinationType: destinationType.DATA_URL });
+    }
+
+var getPhoto = function(source) {
+        navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
+        destinationType: destinationType.FILE_URI,
+        sourceType: source });
+    }
+
+var onFail = function(message) {
+        alert('Failed because: ' + message);
+    }
+
+/////////
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+ var onDeviceReady = function() {
+        var element = document.getElementById('deviceInfo');
+
+        element.innerHTML = 'Device Name: '     + device.name     + '<br />' + 
+                            'Device Cordova: '  + device.cordova + '<br />' + 
+                            'Device Platform: ' + device.platform + '<br />' + 
+                            'Device UUID: '     + device.uuid     + '<br />' + 
+                            'Device Model: '    + device.model     + '<br />' + 
+                            'Device Version: '  + device.version  + '<br />';
+    }
+
+//////////
+
+var lang = function() {
+      navigator.globalization.getPreferredLanguage(
+        function (language) {alert('language: ' + language.value + '\n');},
+        function () {alert('Error getting language\n');}
+      );
+    }
+
+/////////
 
 
-/*img{
-    -moz-border-radius: 5px/5px;
-    -webkit-border-radius: 5px 5px;
-    border-radius: 5px/5px;;
-    border:solid 10px #e23; 
-    width:10px;
-    height:10px;
-    margin-left: 380px;  
-    background: green;
-}*/

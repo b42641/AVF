@@ -13,17 +13,22 @@
         
             <h1>Wallie</h1>
             <h2>John J Plank</h2>
-            <h2>AVF0113</h2> 
-           
-            <ul id="data-output">
-                <li id="data-msg">Getting Twitter...</li>
-            </ul>
+            <h2>AVF0113</h2>                        
+      
+            <button onclick="capturePhoto();">Capture Photo</button> <br>
+            <button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
+            <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
+            <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br> 
 
-        
+            <h2>Research</h2>
+                <a href=".html" data-icon="star" ><h2>Accessibility</h2></a>
+            
             <div id="center">
-                <a href="index.html" data-icon="star" >home</a>
+             <a href="index.html" data-icon="star" >home</a>
             </div>
-                    
+
+
+        <script type="text/javascritp" src="cordova-2.3.0.js"></script>                 
         <script src="http://code.jquery.com/jquery.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
     </body>
