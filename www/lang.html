@@ -2,24 +2,18 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <title>Cordova</title>
-    <script type="text/javascript" charset="utf-8" src="cordova-2.3.0.js"></script>
-    <script type="text/javascript" charset="utf-8">
-
-    function checkDateString() {
-      navigator.globalization.dateToString(
-        new Date(),
-        function (date) {alert('date: ' + date.value + '\n');},
-        function () {alert('Error getting dateString\n');,
-        {formatLength:'short', selector:'date and time'}}
-      );
-    }
-    </script>
+    <title>Language</title>
   </head>
   <body>
+    
     <button onclick="checkDateString()">Click for date string</button>
-  <div id="center">
-                <a href="index.html" data-icon="star" >home</a>
-            </div>
+      
+      <div id="center">
+        <a href="index.html" data-icon="star" >home</a>
+      </div>
+        
+        <script type="text/javascript" src="cordova-2.3.0.js"></script>                 
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
   </body>
 </html>
